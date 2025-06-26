@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bihar Election Race Predictor</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+  <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-xl">
+    <h1 class="text-2xl font-bold mb-4 text-center">Bihar Election Race Predictor</h1>
+
+    <form action="/predict" method="POST" class="space-y-4">
+      <div>
+        <label class="block font-medium">Poll %</label>
+        <input type="number" step="any" name="poll" class="w-full p-2 border rounded" required>
+      </div>
+      <div>
+        <label class="block font-medium">Total Votes</label>
+        <input type="number" name="total_votes" class="w-full p-2 border rounded" required>
+      </div>
+      <div>
+        <label class="block font-medium">Total Electors</label>
+        <input type="number" name="total_electors" class="w-full p-2 border rounded" required>
+      </div>
+      <div>
+        <label class="block font-medium">Party</label>
+        <select name="party" class="w-full p-2 border rounded">
+          <option value="0">BJP</option>
+          <option value="1">RJD</option>
+          <option value="2">INC</option>
+          <option value="3">JD(U)</option>
+          <option value="4">LJP</option>
+          <option value="5">CPI(ML)</option>
+          <option value="6">CPI</option>
+          <option value="7">CPM</option>
+          <option value="8">BSP</option>
+          <option value="9">HAM(S)</option>
+          <option value="10">RLSP</option>
+          <option value="11">AIMIM</option>
+          <option value="12">Independent</option>
+          <option value="13">Others</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-medium">District</label>
+        <select name="district" class="w-full p-2 border rounded">
+          <!-- Dynamically filled by Flask if needed -->
+          {% for id, name in districts.items() %}
+            <option value="{{ id }}">{{ name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label class="block font-medium">Constituency Type</label>
+        <select name="type" class="w-full p-2 border rounded">
+          <option value="0">General</option>
+          <option value="1">SC</option>
+          <option value="2">ST</option>
+          <option value="3">Reserved</option>
+          <option value="4">OBC</option>
+        </select>
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Predict</button>
+    </form>
+  </div>
+</body>
+</html>
